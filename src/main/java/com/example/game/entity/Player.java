@@ -1,7 +1,7 @@
-package com.example.game;
+package com.example.game.entity;
 
-import com.example.game.board.OpponentBoard;
-import com.example.game.board.PlayerBoard;
+import com.example.game.entity.board.OpponentBoard;
+import com.example.game.entity.board.PlayerBoard;
 
 public class Player {
     private final String name;

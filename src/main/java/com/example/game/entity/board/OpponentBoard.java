@@ -1,6 +1,6 @@
-package com.example.game.board;
+package com.example.game.entity.board;
 
-import com.example.game.TargetStatus;
+import com.example.game.entity.TargetStatus;
 
 public class OpponentBoard extends Board {
     public OpponentBoard(int countOfRows, int countOfCols) {

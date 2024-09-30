@@ -1,6 +1,6 @@
-package com.example.game.board;
+package com.example.game.entity.board;
 
-import com.example.game.TargetStatus;
+import com.example.game.entity.TargetStatus;
 
 public class PlayerBoard extends Board {
     private int countOfShipsDesks = 0;
@@ -20,9 +20,8 @@ public class PlayerBoard extends Board {
                 case '#',  '*' -> {
                     return TargetStatus.HIT_SAME_PLACE;
                 }
-                default -> {
-                    field[row][col] = '*';
-                }
+                default -> field[row][col] = '*';
+
             }
             return TargetStatus.MISSED;
         } else {
@@ -79,7 +78,6 @@ public class PlayerBoard extends Board {
 
     //если размеры корабля выходят за пределы доски
     private boolean isRowAndColValid(int shipSize, int row, int col, boolean vertical) {
-        System.out.println(row + " " + col + " " + shipSize + " " + vertical);
         return !(row < 0
                 || col < 0
                 || row >= super.fieldRowsCount

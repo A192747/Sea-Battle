@@ -1,4 +1,4 @@
-package com.example.game.board;
+package com.example.game.entity.board;
 
 public abstract class Board {
     protected final int fieldRowsCount;
