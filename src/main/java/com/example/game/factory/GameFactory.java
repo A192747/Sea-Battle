@@ -8,28 +8,25 @@ import static com.example.game.Game.fieldSize;
 
 public class GameFactory {
     private static InputHandler inputHandler;
-    private static PlayerManager playerManager;
-    private static ShipManager shipManager;
     private static GameLoop gameLoop;
 
-    private GameFactory() {}
+    public GameFactory() {}
 
-    public static void initialize() {
+    public void initialize() {
         inputHandler = new InputHandler();
-        playerManager = new PlayerManager(inputHandler, fieldSize);
-        shipManager = new ShipManager(inputHandler, playerManager);
+        PlayerManager playerManager = new PlayerManager(inputHandler);
+        playerManager.init(fieldSize);
+        ShipManager shipManager = new ShipManager(inputHandler);
+        shipManager.init();
+        shipManager.placeShipsForPlayers(playerManager);
         gameLoop = new GameLoop(playerManager, inputHandler);
     }
 
-    public static InputHandler getInputHandler() {
+    public InputHandler getInputHandler() {
         return inputHandler;
     }
 
-    public static PlayerManager getPlayerManager() {
-        return playerManager;
-    }
-
-    public static GameLoop getGameLoop() {
+    public GameLoop getGameLoop() {
         return gameLoop;
     }
 

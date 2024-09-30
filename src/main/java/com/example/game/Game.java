@@ -8,13 +8,13 @@ import java.util.InputMismatchException;
 
 public class Game {
     public final static int fieldSize = 10;
+    private final GameFactory factory = new GameFactory();
 
     public void start() {
-        InputHandler inputHandler = new InputHandler();
         try {
 
-            GameFactory.initialize();
-            GameLoop gameLoop = GameFactory.getGameLoop();
+            factory.initialize();
+            GameLoop gameLoop = factory.getGameLoop();
             gameLoop.startGame();
             gameLoop.printWinner();
 
@@ -23,9 +23,7 @@ public class Game {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         } finally {
-            System.out.println(inputHandler);
-            System.out.println(GameFactory.getInputHandler());
-            GameFactory.getInputHandler().close();
+            factory.getInputHandler().close();
         }
     }
 

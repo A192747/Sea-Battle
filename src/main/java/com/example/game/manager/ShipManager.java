@@ -12,14 +12,12 @@ public class ShipManager {
     private final Map<Integer, Integer> shipsAndCount;
     private final InputHandler inputHandler;
 
-    public ShipManager(InputHandler inputHandler, PlayerManager playerManager) {
+    public ShipManager(InputHandler inputHandler) {
         shipsAndCount = new HashMap<>();
         this.inputHandler = inputHandler;
-        initShipsCount();
-        placeShipsForPlayers(playerManager);
     }
 
-    private void initShipsCount() throws InputMismatchException, IllegalArgumentException{
+    public void init() throws InputMismatchException, IllegalArgumentException{
         System.out.print("Введите максимальное кол-во палуб, которое будет у корабля в игре: ");
 
         int maxCount = inputHandler.readIntegerInput();
@@ -68,14 +66,14 @@ public class ShipManager {
             System.out.print("Будет ли корабль расположен вертикально (A - нет | [B:" + (char)('A' + fieldSize - 1) + "] - да)? ");
 
             int direction = inputHandler.readLetterInput();
-            isVertical = direction != 'A';
+            isVertical = direction != 0;
 
         }
 
         return player.placeShip(countOfDesks, row, col, isVertical);
     }
 
-    private void placeShipsForPlayers(PlayerManager playerManager) {
+    public void placeShipsForPlayers(PlayerManager playerManager) {
         System.out.println("---- Расположение кораблей для игроков ----");
         placeShipsForPlayer(playerManager.getPlayer1());
         placeShipsForPlayer(playerManager.getPlayer2());

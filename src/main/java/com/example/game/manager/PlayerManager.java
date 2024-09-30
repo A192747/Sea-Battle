@@ -7,12 +7,11 @@ public class PlayerManager {
     private Player player2;
     private final InputHandler inputHandler;
 
-    public PlayerManager(InputHandler inputHandler, int fieldSize) {
+    public PlayerManager(InputHandler inputHandler) {
         this.inputHandler = inputHandler;
-        initPlayers(fieldSize);
     }
 
-    private void initPlayers(int fieldSize) {
+    public void init(int fieldSize) {
         System.out.print("Введите имя первого игрока: ");
         String name1 = inputHandler.readPlayerNameInput();
         System.out.print("Введите имя второго игрока: ");
