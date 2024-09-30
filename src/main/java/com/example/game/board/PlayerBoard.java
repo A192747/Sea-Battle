@@ -11,16 +11,22 @@ public class PlayerBoard extends Board {
 
     public TargetStatus handleShot(int row, int col) {
         if (row >= 0 && row < fieldRowsCount && col >= 0 && col < fieldColsCount) {
-            if(field[row][col] == '1') {
-                field[row][col] = '#';
-                countOfShipsDesks--;
-                return TargetStatus.HIT_TARGET;
+            switch (field[row][col]) {
+                case '1' -> {
+                    field[row][col] = '#';
+                    countOfShipsDesks--;
+                    return TargetStatus.HIT_TARGET;
+                }
+                case '#',  '*' -> {
+                    return TargetStatus.HIT_SAME_PLACE;
+                }
+                default -> {
+                    field[row][col] = '*';
+                }
             }
-            field[row][col] = '*';
             return TargetStatus.MISSED;
         } else {
-            //TODO правильную обработку ошибок при неверных введенных значениях
-            throw new IllegalArgumentException("");
+            throw new IndexOutOfBoundsException("Координаты выходят за пределы поля");
         }
     }
 
@@ -59,14 +65,6 @@ public class PlayerBoard extends Board {
     }
 
     private boolean isPossibleToPlaceShip(int shipSize, int row, int col, boolean vertical) {
-        //если размеры корабля выходят за пределы доски
-        if(row > super.fieldRowsCount
-                || col > super.fieldColsCount
-                || vertical && (row + shipSize - 1 >= super.fieldRowsCount)
-                || !vertical && (col + shipSize - 1 >= super.fieldColsCount)) {
-            return false;
-        }
-
         //проверка не заняты ли окружающие и необходимые нам ячейки поля
         int value1 = col;
         int value2 = row;
@@ -75,10 +73,23 @@ public class PlayerBoard extends Board {
             value1 = value2;
             value2 = temp;
         }
-        return isFreeArea(value1, value2, shipSize, vertical);
+        return isRowAndColValid(shipSize, row, col, vertical)
+                && isAreaFree(value1, value2, shipSize, vertical);
     }
 
-    private boolean isFreeArea(int value1, int value2, int shipSize, boolean vertical) {
+    //если размеры корабля выходят за пределы доски
+    private boolean isRowAndColValid(int shipSize, int row, int col, boolean vertical) {
+        System.out.println(row + " " + col + " " + shipSize + " " + vertical);
+        return !(row < 0
+                || col < 0
+                || row >= super.fieldRowsCount
+                || col >= super.fieldColsCount
+                || vertical && (row + shipSize - 1 >= super.fieldRowsCount)
+                || !vertical && (col + shipSize - 1 >= super.fieldColsCount));
+    }
+
+
+    private boolean isAreaFree(int value1, int value2, int shipSize, boolean vertical) {
         int fieldSize = vertical ? fieldRowsCount : fieldColsCount;
         int lastValue2Index = Math.min(value2 + shipSize + 1, fieldSize);
         int i = value2 - 1 >= 0 ? value2 - 1 : value2;

@@ -22,21 +22,29 @@ public abstract class Board {
     }
 
     public void printBoard() {
+        printAlphabetLine(fieldColsCount);
         for(int i = 0; i < fieldRowsCount; i++) {
-            printLine(fieldColsCount);
-            System.out.print("|");
+            printLine(fieldColsCount + 1);
+            System.out.print("|" + (char)('A' + i) +"|");
             for(int j = 0; j < fieldColsCount; j++) {
                 System.out.print(field[i][j] + "|");
             }
             System.out.print("\n");
         }
-        printLine(fieldColsCount);
+        printLine(fieldColsCount + 1);
     }
     private void printLine(int countOfColumns) {
         for(int j = 0; j < countOfColumns; j++) {
             System.out.print("--");
         }
         System.out.print("-\n");
+    }
+    private void printAlphabetLine(int countOfColumns) {
+        System.out.print("\\ ");
+        for (int i = 0; i < countOfColumns; i++) {
+            System.out.print("|" + (char)('A' + i));
+        }
+        System.out.print("|\n");
     }
 
 
