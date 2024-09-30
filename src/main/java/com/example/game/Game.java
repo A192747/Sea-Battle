@@ -1,8 +1,8 @@
 package com.example.game;
 
 import com.example.game.entity.GameLoop;
+import com.example.game.entity.GameLoopImpl;
 import com.example.game.factory.GameFactory;
-import com.example.game.manager.InputHandler;
 
 import java.util.InputMismatchException;
 
