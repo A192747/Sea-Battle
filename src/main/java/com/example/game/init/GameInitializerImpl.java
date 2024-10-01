@@ -12,8 +12,8 @@ public class GameInitializerImpl implements GameInitializer {
     private static PlayerManager playerManager;
     private static ShipManager shipManager;
     private static BoardFactory boardFactory;
-    private static int rowCount;
-    private static int columnCount;
+    private final int rowCount;
+    private final int columnCount;
 
     public GameInitializerImpl(int rowCount, int columnCount) {
         this.rowCount = rowCount;
@@ -40,6 +40,7 @@ public class GameInitializerImpl implements GameInitializer {
     }
 
     private void initEntities() {
+        inputHandler.init(rowCount, columnCount);
         boardFactory.init(rowCount, columnCount);
         playerManager.init();
         shipManager.init(rowCount, columnCount);

@@ -21,28 +21,21 @@ public class InputHandlerImpl implements InputHandler {
     }
 
     public void init(int rowsCount, int columnsCount) {
-        this.rowsCount = rowsCount;
-        this.columnsCount = columnsCount;
+        InputHandlerImpl.rowsCount = rowsCount;
+        InputHandlerImpl.columnsCount = columnsCount;
     }
 
     public int readLetterInput() {
-        int result = 0;
         while (true) {
-            try {
-                String string = scanner.next();
-                if(string.length() == 1) {
-                    result = string.charAt(0) - 'A';
-                    if(result > Math.max(rowsCount, columnsCount) - 1 || result < 0) {
-                        throw new IllegalArgumentException("Разрешено использовать только буквы в диапазоне [A:" + (char)('A' + rowsCount - 1) +  "].\n" +
-                                "Введите корректное значение: ");
-                    }
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.err.print(e.getMessage());
+            String string = scanner.next();
+            if(string.length() == 1 && string.charAt(0) <= (char) ('A' + rowsCount - 1) && string.charAt(0) >= 'A') {
+                return string.charAt(0) - 'A';
+
+            } else {
+                System.out.print("Разрешено использовать только буквы в диапазоне [A:" + (char)('A' + rowsCount - 1) +  "].\n" +
+                        "Введите корректное значение: ");
             }
         }
-        return result;
     }
 
     public int readIntegerInput() {
@@ -61,6 +54,11 @@ public class InputHandlerImpl implements InputHandler {
 
     public String readPlayerNameInput() {
         return scanner.next();
+    }
+
+    public void readAnyInput() {
+        System.out.println("Введите любой символ чтобы продолжить...");
+        scanner.next();
     }
 
     public void close() {

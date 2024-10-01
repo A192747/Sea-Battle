@@ -22,6 +22,7 @@ public class GameLoopImpl implements GameLoop {
         System.out.println("\n---- Начало боя ----");
         while (!gameOver) {
             System.out.println("Ход игрока " + currentPlayer.getName());
+            inputHandler.readAnyInput();
             currentPlayer.printPlayerBoard();
             currentPlayer.printOpponentBoard();
 
