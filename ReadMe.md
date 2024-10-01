@@ -10,6 +10,6 @@
 При реализации старайтесь следовать Java Code Convensions, а также старайтесь не использовать static-методы.
 
 ## Зависимости классов друг от друга
-![Screenshot](https://github.com/A192747/Sea-Battle/images/Dependencies.png)
+![Screenshot](https://github.com/A192747/Sea-Battle/blob/main/images/Dependencies.png)
 
 
