@@ -1,11 +1,12 @@
 package com.example.game.entity.board;
 
 import com.example.game.entity.TargetStatus;
+import com.example.game.entity.board.interfaces.PlayerBoard;
 
-public class PlayerBoard extends Board {
+public class PlayerBoardImpl extends Board implements PlayerBoard {
     private int countOfShipsDesks = 0;
 
-    public PlayerBoard(int countOfRows, int countOfCols) {
+    public PlayerBoardImpl(int countOfRows, int countOfCols) {
         super(countOfRows, countOfCols);
     }
 

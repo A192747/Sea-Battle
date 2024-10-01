@@ -2,11 +2,11 @@ package com.example.game.manager;
 
 import java.util.Scanner;
 
-import static com.example.game.Game.fieldSize;
 
 public class InputHandlerImpl implements InputHandler {
     private static Scanner scanner;
-
+    private static int rowsCount;
+    private static int columnsCount;
     private static InputHandlerImpl instance;
 
     public static InputHandler getInstance() {
@@ -20,6 +20,11 @@ public class InputHandlerImpl implements InputHandler {
         scanner = new Scanner(System.in);
     }
 
+    public void init(int rowsCount, int columnsCount) {
+        this.rowsCount = rowsCount;
+        this.columnsCount = columnsCount;
+    }
+
     public int readLetterInput() {
         int result = 0;
         while (true) {
@@ -27,8 +32,8 @@ public class InputHandlerImpl implements InputHandler {
                 String string = scanner.next();
                 if(string.length() == 1) {
                     result = string.charAt(0) - 'A';
-                    if(result > fieldSize - 1 || result < 0) {
-                        throw new IllegalArgumentException("Разрешено использовать только буквы в диапазоне [A:" + (char)('A' + fieldSize - 1) +  "].\n" +
+                    if(result > Math.max(rowsCount, columnsCount) - 1 || result < 0) {
+                        throw new IllegalArgumentException("Разрешено использовать только буквы в диапазоне [A:" + (char)('A' + rowsCount - 1) +  "].\n" +
                                 "Введите корректное значение: ");
                     }
                 }

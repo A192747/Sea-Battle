@@ -5,23 +5,27 @@ import com.example.game.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.game.Game.fieldSize;
 
 public class ShipManagerImpl implements ShipManager {
     private final Map<Integer, Integer> shipsAndCount;
     private final InputHandler inputHandler;
+    private int rowsCount;
+    private int columnsCount;
 
     public ShipManagerImpl(InputHandler inputHandler) {
         shipsAndCount = new HashMap<>();
         this.inputHandler = inputHandler;
     }
 
-    public void init() {
+    public void init(int rowsCount, int columnsCount) {
+        this.columnsCount = columnsCount;
+        this.rowsCount = rowsCount;
         System.out.print("Введите максимальное кол-во палуб, которое будет у корабля в игре: ");
 
+
         int maxCount = inputHandler.readIntegerInput();
-        if(maxCount < 1 || maxCount > fieldSize) {
-            throw new IllegalArgumentException("Максимальное кол-во палуб у корабля должно быть <= " + fieldSize + " и > 0");
+        if(maxCount < 1 || maxCount > rowsCount) {
+            throw new IllegalArgumentException("Максимальное кол-во палуб у корабля должно быть <= " + rowsCount + " и > 0");
         }
 
         if(fillMapCountOfDesks(maxCount) == 0) {
@@ -62,7 +66,7 @@ public class ShipManagerImpl implements ShipManager {
 
         boolean isVertical = true;
         if(askShipDirection) {
-            System.out.print("Будет ли корабль расположен вертикально (A - нет | [B:" + (char)('A' + fieldSize - 1) + "] - да)? ");
+            System.out.print("Будет ли корабль расположен вертикально (A - нет | [B:" + (char)('A' + rowsCount - 1) + "] - да)? ");
 
             int direction = inputHandler.readLetterInput();
             isVertical = direction != 0;

@@ -1,24 +1,32 @@
 package com.example.game.init;
+import com.example.game.entity.BoardFactory;
+import com.example.game.entity.BoardFactoryImpl;
 import com.example.game.loop.GameLoop;
 import com.example.game.loop.GameLoopImpl;
 import com.example.game.manager.*;
 
-import static com.example.game.Game.fieldSize;
 
 public class GameInitializerImpl implements GameInitializer {
     private static InputHandler inputHandler;
     private static GameLoop gameLoop;
     private static PlayerManager playerManager;
     private static ShipManager shipManager;
+    private static BoardFactory boardFactory;
+    private static int rowCount;
+    private static int columnCount;
 
-    public GameInitializerImpl() {}
+    public GameInitializerImpl(int rowCount, int columnCount) {
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+    }
 
     public void initialize() {
         inputHandler = InputHandlerImpl.getInstance();
-        playerManager = new PlayerManagerImpl(inputHandler);
+        boardFactory = new BoardFactoryImpl();
+        playerManager = new PlayerManagerImpl(inputHandler, boardFactory);
         shipManager = new ShipManagerImpl(inputHandler);
 
-        initPlayerAndShips();
+        initEntities();
 
         gameLoop = new GameLoopImpl(playerManager, inputHandler);
     }
@@ -31,9 +39,10 @@ public class GameInitializerImpl implements GameInitializer {
         return gameLoop;
     }
 
-    private void initPlayerAndShips() {
-        playerManager.init(fieldSize, fieldSize);
-        shipManager.init();
+    private void initEntities() {
+        boardFactory.init(rowCount, columnCount);
+        playerManager.init();
+        shipManager.init(rowCount, columnCount);
         shipManager.placeShipsForPlayers(playerManager);
     }
 

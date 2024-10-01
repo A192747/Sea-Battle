@@ -1,16 +1,16 @@
 package com.example.game.entity;
 
-import com.example.game.entity.board.OpponentBoard;
-import com.example.game.entity.board.PlayerBoard;
+import com.example.game.entity.board.interfaces.OpponentBoard;
+import com.example.game.entity.board.interfaces.PlayerBoard;
 
 public class Player {
     private final String name;
     private final PlayerBoard playerBoard;
     private final OpponentBoard opponentBoard;
-    public Player(String name, int countOfRows, int countOfCols) {
+    public Player(String name, PlayerBoard playerBoard, OpponentBoard opponentBoard) {
         this.name = name;
-        playerBoard = new PlayerBoard(countOfRows, countOfCols);
-        opponentBoard = new OpponentBoard(countOfRows, countOfCols);
+        this.playerBoard = playerBoard;
+        this.opponentBoard = opponentBoard;
     }
     public String getName() {
         return name;

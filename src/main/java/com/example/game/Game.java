@@ -1,14 +1,17 @@
 package com.example.game;
 
+import com.example.game.init.GameInitializer;
 import com.example.game.loop.GameLoop;
 import com.example.game.init.GameInitializerImpl;
 
 import java.util.InputMismatchException;
 
 public class Game {
-    public final static int fieldSize = 10;
-    private final GameInitializerImpl initializer = new GameInitializerImpl();
+    private final GameInitializer initializer;
 
+    public Game(GameInitializer initializer) {
+        this.initializer = initializer;
+    }
     public void start() {
         try {
 
