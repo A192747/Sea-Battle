@@ -1,20 +1,19 @@
 package com.example.game;
 
-import com.example.game.entity.GameLoop;
-import com.example.game.entity.GameLoopImpl;
-import com.example.game.factory.GameFactory;
+import com.example.game.loop.GameLoop;
+import com.example.game.init.GameInitializerImpl;
 
 import java.util.InputMismatchException;
 
 public class Game {
     public final static int fieldSize = 10;
-    private final GameFactory factory = new GameFactory();
+    private final GameInitializerImpl initializer = new GameInitializerImpl();
 
     public void start() {
         try {
 
-            factory.initialize();
-            GameLoop gameLoop = factory.getGameLoop();
+            initializer.initialize();
+            GameLoop gameLoop = initializer.getGameLoop();
             gameLoop.startGame();
             gameLoop.printWinner();
 
@@ -23,7 +22,7 @@ public class Game {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         } finally {
-            factory.getInputHandler().close();
+            initializer.getInputHandler().close();
         }
     }
 

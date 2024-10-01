@@ -1,4 +1,4 @@
-package com.example.game.entity;
+package com.example.game.loop;
 
 public interface GameLoop {
     void startGame();

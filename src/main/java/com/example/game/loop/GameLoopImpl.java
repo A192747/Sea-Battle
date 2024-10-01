@@ -1,5 +1,7 @@
-package com.example.game.entity;
+package com.example.game.loop;
 
+import com.example.game.entity.Player;
+import com.example.game.entity.TargetStatus;
 import com.example.game.manager.PlayerManager;
 import com.example.game.manager.InputHandler;
 

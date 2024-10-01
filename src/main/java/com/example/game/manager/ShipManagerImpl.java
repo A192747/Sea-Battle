@@ -72,7 +72,7 @@ public class ShipManagerImpl implements ShipManager {
         return player.placeShip(countOfDesks, row, col, isVertical);
     }
 
-    public void placeShipsForPlayers(PlayerManagerImpl playerManager) {
+    public void placeShipsForPlayers(PlayerManager playerManager) {
         System.out.println("---- Расположение кораблей для игроков ----");
         placeShipsForPlayer(playerManager.getPlayer1());
         placeShipsForPlayer(playerManager.getPlayer2());

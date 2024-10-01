@@ -17,9 +17,7 @@ public class InputHandlerImpl implements InputHandler {
     }
 
     private InputHandlerImpl() {
-        if (scanner == null) {
-            scanner = new Scanner(System.in);
-        }
+        scanner = new Scanner(System.in);
     }
 
     public int readLetterInput() {

@@ -11,7 +11,7 @@ public class PlayerManagerImpl implements PlayerManager {
         this.inputHandler = inputHandler;
     }
 
-    public void init(int fieldRowsNum, int fieldColsNum) {
+    public void init(int rowCount, int columnCount) {
         System.out.print("Введите имя первого игрока: ");
         String name1 = inputHandler.readPlayerNameInput();
         System.out.print("Введите имя второго игрока: ");
@@ -20,8 +20,8 @@ public class PlayerManagerImpl implements PlayerManager {
             throw new IllegalArgumentException("Имена игроков не должны быть пустыми!");
         }
 
-        player1 = new Player(name1, fieldRowsNum, fieldColsNum); //поле 10x10
-        player2 = new Player(name2, fieldRowsNum, fieldColsNum); //поле 10x10
+        player1 = new Player(name1, rowCount, columnCount); //поле 10x10
+        player2 = new Player(name2, rowCount, columnCount); //поле 10x10
     }
 
     public Player getPlayer1() {
