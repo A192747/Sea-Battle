@@ -92,7 +92,7 @@ public class PlayerBoardImpl extends Board implements PlayerBoard {
         int fieldSize = vertical ? fieldRowsCount : fieldColsCount;
         int lastValue2Index = Math.min(value2 + shipSize + 1, fieldSize);
         int i = value2 - 1 >= 0 ? value2 - 1 : value2;
-        int firstValue1Index = value1 - 1 >= 0 ? value1 - 1 : value2;
+        int firstValue1Index = value1 - 1 >= 0 ? value1 - 1 : value1;
         int lastValue1Index = Math.min(value1 + 2, fieldSize);
         for(; i < lastValue2Index; i++) {
             for(int j = firstValue1Index; j < lastValue1Index ; j++) {
